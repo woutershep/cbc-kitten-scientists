@@ -895,6 +895,8 @@ var run = function() {
                 return game.diplomacy.get(name);
         },
         getTradeButton: function (race) {
+            this.manager = new TabManager('Trade');
+            this.manager.render();
             for (var i in this.manager.tab.racePanels) {
                 var panel = this.manager.tab.racePanels[i];
 
