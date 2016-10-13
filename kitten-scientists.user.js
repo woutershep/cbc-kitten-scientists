@@ -58,6 +58,8 @@ var run = function() {
                 // Which religious upgrades should be researched?
                 items: {
                     // Order of the Sun
+                    marker:          {enabled: true},
+                    blackPyramid:    {enabled: true},
                     solarchant:      {require: 'faith', enabled: true},
                     scholasticism:   {require: 'faith', enabled: true},
                     goldenSpire:     {require: 'faith', enabled: true},
@@ -629,14 +631,20 @@ var run = function() {
             activity('Kittens have discovered ' + build.label, 'ks-faith');
         },
         getBuild: function (name) {
+            if (name === 'marker' || name === 'blackPyramid') return game.religion.getZU(name);
             return game.religion.getRU(name);
         },
         getBuildButton: function (name) {
-            var buttons = this.manager.tab.rUpgradeButtons;
+            var buttonsRU = this.manager.tab.rUpgradeButtons;
+            var buttonsZU = this.manager.tab.zgUpgradeButtons;
             var build = this.getBuild(name);
 
-            for (var i in buttons) {
-                if (buttons[i].name === build.label) return buttons[i];
+            for (var i in buttonsRU) {
+                if (buttonsRU[i].name === build.label) return buttonsRU[i];
+            }
+
+            for (var i in buttonsZU) {
+                if (buttonsZU[i].name === build.label) return buttonsZU[i];
             }
         }
     };
