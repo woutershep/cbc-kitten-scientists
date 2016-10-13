@@ -420,6 +420,8 @@ var run = function() {
             buildManager.manager.render();
 
             for (var name in builds) {
+                if (!builds[name].enabled) continue;
+
                 var build = builds[name];
                 var require = !build.require ? false : craftManager.getResource(build.require);
 
