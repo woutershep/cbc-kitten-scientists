@@ -57,9 +57,10 @@ var run = function() {
                 trigger: 0.99,
                 // Which religious upgrades should be researched?
                 items: {
-                    // Order of the Sun
+                    SacrificeBtn:    {enabled: false},
                     marker:          {enabled: true},
                     blackPyramid:    {enabled: true},
+                    // Order of the Sun
                     solarchant:      {require: 'faith', enabled: true},
                     scholasticism:   {require: 'faith', enabled: true},
                     goldenSpire:     {require: 'faith', enabled: true},
@@ -620,15 +621,19 @@ var run = function() {
         manager: undefined,
         crafts: undefined,
         build: function (name) {
-            var build = this.getBuild(name);
-            var button = this.getBuildButton(name);
+            if (name === 'SacrificeBtn') {
+                this.manager.tab.sacrificeBtn.all.link.click();
+            } else {
+                var build = this.getBuild(name);
+                var button = this.getBuildButton(name);
 
-            if (!button || !button.enabled || !button.hasResources()) return;
+                if (!button || !button.enabled || !button.hasResources()) return;
 
-            button.domNode.click(build);
-            storeForSummary(name, 1, 'faith');
+                button.domNode.click(build);
+                storeForSummary(name, 1, 'faith');
 
-            activity('Kittens have discovered ' + build.label, 'ks-faith');
+                activity('Kittens have discovered ' + build.label, 'ks-faith');
+            }
         },
         getBuild: function (name) {
             if (name === 'marker' || name === 'blackPyramid') return game.religion.getZU(name);
