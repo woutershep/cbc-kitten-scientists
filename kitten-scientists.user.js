@@ -57,6 +57,7 @@ var run = function() {
                 trigger: 0.99,
                 // Which religious upgrades should be researched?
                 items: {
+                    ShatterTC:       {enabled: false},
                     SacrificeBtn:    {enabled: false},
                     marker:          {enabled: true},
                     blackPyramid:    {enabled: true},
@@ -616,15 +617,21 @@ var run = function() {
 
     var ReligionManager = function () {
         this.manager = new TabManager('Religion');
+        this.timemanager = new TabManager('Time');
         this.crafts = new CraftManager();
     };
 
     ReligionManager.prototype = {
         manager: undefined,
+        timemanager: undefined,
         crafts: undefined,
         build: function (name) {
             if (name === 'SacrificeBtn') {
                 this.manager.tab.sacrificeBtn.all.link.click();
+            } else if (name === 'ShatterTC') {
+                if (game.calendar.day > 1.2) {
+                    this.timemanager.tab.cfPanel.children[0].children[0].domNode.click();
+                }
             } else {
                 var build = this.getBuild(name);
                 var button = this.getBuildButton(name);
