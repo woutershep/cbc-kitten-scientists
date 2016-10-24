@@ -630,7 +630,7 @@ var run = function() {
                 this.manager.tab.sacrificeBtn.all.link.click();
             } else if (name === 'ShatterTC') {
                 if (game.calendar.day > 1.2) {
-                    this.timemanager.tab.cfPanel.children[0].children[0].domNode.click();
+                    this.timemanager.tab.cfPanel.children[0].children[0].domNode.childNodes[0].childNodes[1].click();
                 }
             } else {
                 var build = this.getBuild(name);
