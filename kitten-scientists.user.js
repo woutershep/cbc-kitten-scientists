@@ -59,6 +59,7 @@ var run = function() {
                 items: {
                     ShatterTC:       {enabled: false},
                     SacrificeBtn:    {enabled: false},
+                    RefineTCBtn:     {enabled: false},
                     marker:          {enabled: true},
                     blackPyramid:    {enabled: true},
                     // Order of the Sun
@@ -628,6 +629,8 @@ var run = function() {
         build: function (name) {
             if (name === 'SacrificeBtn') {
                 this.manager.tab.sacrificeBtn.all.link.click();
+            } else if (name === 'RefineTCBtn') {
+                this.manager.tab.refineTCBtn.domNode.click();
             } else if (name === 'ShatterTC') {
                 if (game.calendar.day > 1.2) {
                     this.timemanager.tab.cfPanel.children[0].children[0].domNode.childNodes[0].childNodes[1].click();
